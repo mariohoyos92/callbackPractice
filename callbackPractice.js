@@ -22,7 +22,7 @@ and what you should write is the sayHi function that makes the code above work,
 
 // 1. Write a function called first that returns the first item of the array using a callback function
 
-  // Code Here
+  const first = (arr, cb) => cb(arr[0]);
 
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -37,7 +37,7 @@ first(names, function(firstName){
 
   //Code Here
 
-
+  const last = (arr, cb) => cb(arr[arr.length - 1]);
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -48,7 +48,7 @@ last(names, function(lastName){
 
 // 3. Write a function called multiply that multiplies two numbers. Invoke the callback with the result of the multiplication. 
 
-  //Code Here
+ const multiply = (a,b,cb) => cb(a*b);
 
 
 
@@ -62,7 +62,7 @@ multiply(4, 3, function(answer){
 // If it does, invoke the callback with true as an argument. 
 // If the name does not exist, invoke the callback with false as an argument.
 
-  //Code Here 
+ const contains = (arr, str, cb) => arr.indexOf(str) !== -1 ? cb(true) : cb(false);
 
 
 
@@ -80,7 +80,18 @@ contains(names, 'Colt', function(result){
 // 5. Write a function called uniq that takes the names array and removes all duplicates.
 // Invoke the callback with the modified array as an argument.
 
-  //Code Here
+  const uniq = (arr, cb) => {
+    let result = [];
+
+    arr.forEach(function (val) {
+      if(result.indexOf(val) < 0){
+        result.push(val)
+      }
+    })
+    
+    cb(result);
+
+  }
 
 
 
@@ -91,7 +102,9 @@ uniq(names, function(uniqArr){
 
 // 6. Write a function called each that takes in an array of names. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
-    //Code Here 
+    const each = (arr,cb) => {
+      arr.forEach((val) => cb(val, arr.indexOf(val)))
+    }
 
 
 
@@ -104,7 +117,14 @@ each(names, function(item, indice){
 // 7. Write a function called getUserById that looks at the array of user objects (users) and searches for a user by ID.
 // When the correct user object is found, invoke the callback with the user object as an argument.
 
-// Code here
+const getUserById = (arr, name, cb) => {
+
+  arr.forEach((val) => {
+    if(val.id === name){
+    cb(val)
+  }
+  })
+}
 
 
 
